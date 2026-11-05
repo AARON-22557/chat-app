@@ -1,0 +1,651 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #111;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Virtual Desktop Wallpaper */
+#desktop {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Desktop Icons */
+.desktop-icons {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 10;
+}
+
+.icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+    color: white;
+    cursor: pointer;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    transition: transform 0.15s ease;
+}
+
+.icon:hover {
+    transform: scale(1.08);
+}
+
+.icon-img {
+    width: 54px;
+    height: 54px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-bottom: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.icon span {
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Modals & Windows */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.modal-content {
+    background: rgba(30, 30, 40, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 30px;
+    width: 400px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.modal-content h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.modal-content p {
+    font-size: 13px;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 5px;
+    color: #ddd;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    font-size: 14px;
+    outline: none;
+}
+
+.modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn.primary {
+    background: #007bff;
+    color: white;
+}
+
+.btn.success {
+    background: #28a745;
+    color: white;
+}
+
+.btn.danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn.warning {
+    background: #ffc107;
+    color: #111;
+}
+
+.btn-sm {
+    padding: 6px 10px;
+    font-size: 11px;
+}
+
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.error-msg {
+    color: #ff5252;
+    font-size: 12px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Windows (Chat, Download, Info) */
+.window {
+    position: absolute;
+    top: 50px;
+    left: calc(50vw - 420px);
+    width: 840px;
+    height: 520px;
+    background: rgba(25, 28, 36, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 50;
+    backdrop-filter: blur(12px);
+}
+
+.window-header {
+    background: rgba(20, 22, 30, 0.9);
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    user-select: none;
+}
+
+.window-title {
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.badge {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+}
+
+.badge.role {
+    background: #17a2b8;
+}
+
+.btn-copy-link {
+    background: rgba(37, 99, 235, 0.35);
+    border: 1px solid rgba(59, 130, 246, 0.6);
+    color: #bfdbfe;
+    padding: 3px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-copy-link:hover {
+    background: rgba(37, 99, 235, 0.75);
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+    transform: translateY(-1px);
+}
+
+.btn-copy-link:active {
+    transform: translateY(0);
+}
+
+.copy-toast {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: slideDownFade 3s forwards ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@keyframes slideDownFade {
+    0% { opacity: 0; transform: translateY(-20px); }
+    15% { opacity: 1; transform: translateY(0); }
+    80% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-20px); }
+}
+
+.window-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.win-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 12px;
+}
+
+.win-btn.minimize { background: #ffc107; color: #000; }
+.win-btn.close { background: #dc3545; }
+
+/* Window Body & Chat Layout */
+.window-body {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+    color: white;
+}
+
+.modal-padding {
+    padding: 24px;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.sidebar {
+    width: 240px;
+    background: rgba(15, 17, 23, 0.8);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.sidebar h3 {
+    font-size: 13px;
+    color: #aaa;
+    text-transform: uppercase;
+}
+
+#user-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+    max-height: 200px;
+}
+
+#user-list li {
+    padding: 6px 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#user-list li.banned {
+    opacity: 0.5;
+    text-decoration: line-through;
+    color: #ff5252;
+}
+
+.boss-panel {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.boss-panel h4 {
+    font-size: 12px;
+    color: #ffc107;
+}
+
+.boss-panel select {
+    width: 100%;
+    padding: 6px;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 12px;
+}
+
+.sanction-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.chat-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: rgba(20, 23, 31, 0.6);
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chat-msg {
+    max-width: 75%;
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-size: 13px;
+    line-height: 1.4;
+    position: relative;
+}
+
+.chat-msg.mine {
+    align-self: flex-end;
+    background: #007bff;
+    color: white;
+}
+
+.chat-msg.other {
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.chat-msg.bot {
+    align-self: flex-start;
+    background: linear-gradient(135deg, rgba(88, 28, 135, 0.4), rgba(67, 56, 202, 0.4));
+    border: 1px solid rgba(167, 139, 250, 0.35);
+    color: #f3f4f6;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.15);
+}
+
+.chat-msg.bot .sender {
+    color: #c084fc;
+}
+
+.bot-badge {
+    background: #7c3aed;
+    color: white;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    margin-left: 4px;
+}
+
+#user-list li.bot-user {
+    border-left: 3px solid #7c3aed;
+    background: rgba(124, 58, 237, 0.15);
+    color: #c084fc;
+    font-weight: 600;
+}
+
+.hint-text {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 4px;
+    margin-bottom: 12px;
+}
+
+.code-pill {
+    background: rgba(34, 197, 94, 0.2);
+    color: #4ade80;
+    border: 1px solid rgba(74, 222, 128, 0.4);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.code-pill:hover {
+    background: rgba(34, 197, 94, 0.4);
+    transform: scale(1.05);
+}
+
+.chat-msg .sender {
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 2px;
+    color: #ffc107;
+}
+
+.system-msg {
+    align-self: center;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 6px 14px;
+    border-radius: 16px;
+    font-size: 11px;
+    color: #bbb;
+    text-align: center;
+}
+
+.chat-controls {
+    padding: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(15, 17, 23, 0.9);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.quick-bar {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+}
+
+.quick-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.quick-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.chat-input-row {
+    display: flex;
+    gap: 8px;
+}
+
+.chat-input-row input {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    outline: none;
+}
+
+/* Download Card */
+.download-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.download-card .card-icon {
+    font-size: 36px;
+}
+
+.download-card .card-info {
+    flex: 1;
+}
+
+/* Sanction Overlay UI Lockdown */
+.sanction-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(180, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.sanction-card {
+    background: rgba(20, 0, 0, 0.95);
+    border: 2px solid #ff3333;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    color: white;
+    max-width: 480px;
+    box-shadow: 0 0 50px rgba(255, 0, 0, 0.6);
+}
+
+.sanction-icon {
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+.timer-box {
+    margin: 20px 0;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 16px;
+    border-radius: 12px;
+}
+
+.timer-countdown {
+    font-size: 36px;
+    font-weight: 800;
+    color: #ff5252;
+}
+
+/* Taskbar */
+.taskbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 44px;
+    background: rgba(15, 17, 23, 0.9);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    gap: 12px;
+    z-index: 80;
+}
+
+.start-btn {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.taskbar-apps {
+    flex: 1;
+    display: flex;
+    gap: 8px;
+}
+
+.task-app {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ccc;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.taskbar-clock {
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+}

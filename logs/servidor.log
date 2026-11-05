@@ -1,0 +1,42 @@
+[2026-11-04T19:31:39.075Z] [SERVER] Sala predeterminada lista: Código [000000]
+[2026-11-04T19:31:39.082Z] [SERVER_START] Servidor iniciado en el puerto 3000
+[2026-11-04T19:42:24.335Z] [SERVER] Sala predeterminada lista: Código [000000]
+[2026-11-04T19:42:24.343Z] [SERVER_START] Servidor iniciado en el puerto 3000
+[2026-11-04T19:42:24.771Z] [CONNECTION] Cliente conectado: ID 1925
+[2026-11-04T19:42:27.885Z] [DISCONNECT] Cliente desconectado: Usuario_19 (1925)
+[2026-11-04T19:42:54.189Z] [CONNECTION] Cliente conectado: ID 6410
+[2026-11-04T19:42:56.238Z] [DISCONNECT] Cliente desconectado: Usuario_64 (6410)
+[2026-11-04T19:43:27.663Z] [CONNECTION] Cliente conectado: ID 5173
+[2026-11-04T19:43:29.416Z] [ROOM_CREATE] Sala creada [492895] por Usuario
+[2026-11-04T19:43:30.987Z] [ROOM_CLOSE] Sala [492895] eliminada (sin usuarios).
+[2026-11-04T19:43:30.987Z] [DISCONNECT] Cliente desconectado: Usuario (5173)
+[2026-11-04T19:43:35.006Z] [CONNECTION] Cliente conectado: ID 3989
+[2026-11-04T19:43:37.526Z] [ROOM_CREATE] Sala creada [479560] por Aarón_012
+[2026-11-04T19:43:40.365Z] [ROOM_CLOSE] Sala [479560] eliminada (sin usuarios).
+[2026-11-04T19:43:40.364Z] [DISCONNECT] Cliente desconectado: Aarón_012 (3989)
+[2026-11-04T19:43:44.208Z] [CONNECTION] Cliente conectado: ID 5403
+[2026-11-04T19:43:48.271Z] [ROOM_CREATE] Sala creada [401485] por Aarón_012
+[2026-11-04T19:44:43.704Z] [DISCONNECT] Cliente desconectado: Aarón_012 (5403)
+[2026-11-04T19:44:43.704Z] [ROOM_CLOSE] Sala [401485] eliminada (sin usuarios).
+[2026-11-04T19:54:13.314Z] [CONNECTION] Cliente conectado: ID 6709
+[2026-11-04T19:54:17.707Z] [ROOM_CREATE] Sala creada [259887] por Aarón_012
+[2026-11-04T19:54:24.731Z] [DISCONNECT] Cliente desconectado: Aarón_012 (6709)
+[2026-11-04T19:54:24.732Z] [ROOM_CLOSE] Sala [259887] eliminada (sin usuarios).
+[2026-11-05T07:17:17.198Z] [SERVER] Sala predeterminada lista: Código [000000]
+[2026-11-05T07:17:17.215Z] [SERVER_START] Servidor iniciado en el puerto 3000
+[2026-11-05T07:17:18.340Z] [CONNECTION] Cliente conectado: ID 5543
+[2026-11-05T07:17:21.198Z] [ERROR_UNCAUGHT] Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+    at Server.setupListenHandle [as _listen2] (node:net:2390:16)
+    at listenInCluster (node:net:2499:12)
+    at node:net:2728:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+[2026-11-05T07:17:21.681Z] [CONNECTION] Cliente conectado: ID 5797
+[2026-11-05T07:21:15.755Z] [DISCONNECT] Cliente desconectado: Usuario_57 (5797)
+[2026-11-05T07:21:17.703Z] [CONNECTION] Cliente conectado: ID 7602
+[2026-11-05T07:21:18.177Z] [DISCONNECT] Cliente desconectado: Usuario_76 (7602)
+[2026-11-05T07:56:44.628Z] [ERROR_UNCAUGHT] Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+    at Server.setupListenHandle [as _listen2] (node:net:2390:16)
+    at listenInCluster (node:net:2499:12)
+    at node:net:2728:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+[2026-11-05T07:57:32.538Z] [DISCONNECT] Cliente desconectado: Usuario_55 (5543)

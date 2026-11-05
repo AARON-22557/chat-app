@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicroOS PC - App de Chat & Sanciones</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Virtual OS Desktop -->
+    <div id="desktop">
+        <!-- Desktop Shortcuts -->
+        <div class="desktop-icons">
+            <div class="icon" id="open-chat-app">
+                <div class="icon-img chat-icon">💬</div>
+                <span>MicroOS Chat</span>
+            </div>
+            <div class="icon" id="open-download-app">
+                <div class="icon-img download-icon">📦</div>
+                <span>Descargar App</span>
+            </div>
+            <div class="icon" id="open-info-app">
+                <div class="icon-img info-icon">ℹ️</div>
+                <span>Información</span>
+            </div>
+        </div>
+
+        <!-- Room Invitation Modal / Overlay -->
+        <div id="room-modal" class="modal">
+            <div class="modal-content">
+                <h2 id="modal-title">🔐 Conectarse a MicroOS Chat</h2>
+                <p id="modal-desc">Ingresa un código de invitación o crea una sala nueva.</p>
+                
+                <div class="form-group">
+                    <label for="user-nickname">Tu Nombre / Nickname:</label>
+                    <input type="text" id="user-nickname" placeholder="Ej. Alex" maxlength="15" value="Usuario" autofocus>
+                </div>
+
+                <div class="form-group" id="group-room-code">
+                    <label for="room-code-input">Código de Invitación (6 dígitos):</label>
+                    <input type="text" id="room-code-input" placeholder="Ej. 849201" maxlength="6">
+                    <p class="hint-text">💡 Sala general: <span id="quick-default-code" class="code-pill">000000</span> (clic para autocompletar)</p>
+                </div>
+
+                <div class="modal-actions" id="modal-actions-container">
+                    <button id="btn-join-room" class="btn primary">Unirse con Código</button>
+                    <button id="btn-create-room" class="btn success">👑 Crear Sala Nueva (Jefe)</button>
+                </div>
+                <div id="modal-error" class="error-msg"></div>
+            </div>
+        </div>
+
+        <!-- Chat Window -->
+        <div id="chat-window" class="window hidden">
+            <div class="window-header">
+                <div class="window-title">
+                    <span>💬 MicroOS Chat PC</span>
+                    <span id="room-badge" class="badge">Código: ------</span>
+                    <span id="role-badge" class="badge role">Usuario</span>
+                    <button id="btn-copy-link" class="btn-copy-link" title="Copiar enlace directo de invitación para compartir">🔗 Compartir Enlace</button>
+                </div>
+                <div class="window-controls">
+                    <button class="win-btn minimize" id="win-min">_</button>
+                    <button class="win-btn close" id="win-close">✕</button>
+                </div>
+            </div>
+
+            <div class="window-body">
+                <!-- Sidebar User List & Boss Controls -->
+                <div class="sidebar">
+                    <h3>👥 Usuarios en Sala (<span id="user-count">0</span>)</h3>
+                    <ul id="user-list"></ul>
+
+                    <!-- Boss Admin Panel -->
+                    <div id="boss-panel" class="boss-panel hidden">
+                        <h4>👑 Panel de Sanciones (Jefe)</h4>
+                        <p class="small">Selecciona un usuario para sancionar:</p>
+                        <select id="ban-target-select">
+                            <option value="">-- Seleccionar usuario --</option>
+                        </select>
+                        <div class="sanction-actions">
+                            <button class="btn danger btn-sm" data-seconds="10">10s Ban</button>
+                            <button class="btn danger btn-sm" data-seconds="30">30s Ban</button>
+                            <button class="btn danger btn-sm" data-seconds="60">1 Min Ban</button>
+                            <button class="btn warning btn-sm" data-seconds="0">✅ Desbanear</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Chat Messages & Input -->
+                <div class="chat-main">
+                    <div id="chat-messages" class="chat-messages">
+                        <div class="system-msg">Bienvenido a MicroOS Chat. Ingresa tu mensaje para chatear.</div>
+                    </div>
+
+                    <div class="chat-controls">
+                        <!-- Quick Emojis & Phrases -->
+                        <div class="quick-bar">
+                            <button class="quick-btn">HOLA</button>
+                            <button class="quick-btn">OK</button>
+                            <button class="quick-btn">NO</button>
+                            <button class="quick-btn">❤️</button>
+                            <button class="quick-btn">😊</button>
+                            <button class="quick-btn">👍</button>
+                        </div>
+
+                        <form id="chat-form" class="chat-input-row">
+                            <input type="text" id="chat-input" placeholder="Escribe un mensaje..." autocomplete="off">
+                            <button type="submit" class="btn primary">Enviar 🚀</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Download App Modal -->
+        <div id="download-window" class="window hidden">
+            <div class="window-header">
+                <div class="window-title">📦 Descargar App MicroOS</div>
+                <div class="window-controls">
+                    <button class="win-btn close" id="download-close">✕</button>
+                </div>
+            </div>
+            <div class="window-body modal-padding">
+                <h3>📥 Descargar Paquete MicroOS Chat PC</h3>
+                <p>Puedes descargar el archivo comprimido ZIP con todo el código servidor, cliente e instrucciones para ejecutar en cualquier ordenador:</p>
+                
+                <div class="download-card">
+                    <div class="card-icon">💻</div>
+                    <div class="card-info">
+                        <strong>MicroOS_PC_Chat_App.zip</strong>
+                        <p>Incluye servidor Node.js, cliente Web, estilos y sistema de código de invitación.</p>
+                    </div>
+                    <a href="MicroOS_PC_Chat_App.zip" download class="btn success download-btn">⬇️ Descargar ZIP</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Window -->
+        <div id="info-window" class="window hidden">
+            <div class="window-header">
+                <div class="window-title">ℹ️ Acerca de MicroOS PC</div>
+                <div class="window-controls">
+                    <button class="win-btn close" id="info-close">✕</button>
+                </div>
+            </div>
+            <div class="window-body modal-padding">
+                <h3>MicroOS - Sistema Operativo y Chat PC</h3>
+                <p><strong>Características:</strong></p>
+                <ul>
+                    <li>🔑 <strong>Código de Invitación:</strong> Únete a salas privadas o crea la tuya propia.</li>
+                    <li>👑 <strong>Modo Jefe / Creador:</strong> El administrador de la sala puede sancionar con baneos temporales.</li>
+                    <li>🛑 <strong>Sistema de Sanciones:</strong> Los usuarios suspendidos verán su interfaz bloqueada con un contador en tiempo real.</li>
+                    <li>💻 <strong>Multiplataforma:</strong> Funciona en navegadores web de PC y laptops.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Sanction UI Lockdown Overlay -->
+        <div id="sanction-overlay" class="sanction-overlay hidden">
+            <div class="sanction-card">
+                <div class="sanction-icon">🚫</div>
+                <h2>HAS SIDO SANCIONADO / BANEADO TEMPORALMENTE</h2>
+                <p id="sanction-reason">El Jefe de la sala ha suspendido tu acceso por comportamiento inadecuado.</p>
+                <div class="timer-box">
+                    <span>Tiempo restante de sanción:</span>
+                    <div id="sanction-timer" class="timer-countdown">00s</div>
+                </div>
+                <p class="small">El chat y los controles permanecerán bloqueados hasta que venza el tiempo o el Jefe te desbanee.</p>
+            </div>
+        </div>
+
+        <!-- OS Taskbar -->
+        <div class="taskbar">
+            <button class="start-btn" id="start-menu-btn"> MicroOS</button>
+            <div class="taskbar-apps">
+                <button class="task-app" id="task-chat">💬 Chat</button>
+                <button class="task-app" id="task-download">📦 Descargar App</button>
+            </div>
+            <div class="taskbar-clock" id="clock">12:00 PM</div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

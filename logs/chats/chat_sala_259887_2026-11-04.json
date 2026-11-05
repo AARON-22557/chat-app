@@ -1,0 +1,22 @@
+[
+  {
+    "id": "bot_1793822058319",
+    "timestamp": "20:54:18",
+    "isoDate": "2026-11-04T19:54:18.320Z",
+    "senderId": "bot_assistant",
+    "senderName": "🤖 MicroBot",
+    "isBoss": false,
+    "isBot": true,
+    "text": "¡Hola Aarón_012! 👑 Eres el Jefe y Creador de esta sala (259887). Haz clic en **'🔗 Compartir Enlace'** arriba para copiar el link y pasárselo a tus amigos. Escribe !ayuda para ver comandos."
+  },
+  {
+    "id": "bot_1793822064359",
+    "timestamp": "20:54:24",
+    "isoDate": "2026-11-04T19:54:24.361Z",
+    "senderId": "bot_assistant",
+    "senderName": "🤖 MicroBot",
+    "isBoss": false,
+    "isBot": true,
+    "text": "📟 ¿Sabías que MicroOS también cuenta con versión para BBC micro:bit que transmite mensajes por radio?"
+  }
+]
